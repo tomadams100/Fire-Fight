@@ -48,15 +48,14 @@ class Game {
                 this.fireArray[i].draw() 
             }
             //CREATE WATER
-            if(Math.random()>0.95) {
-                this.waterArray.push(new Water(this.canvas,this.player.angle))
+            if(Math.random()>0.9) {
+                this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray))
             }
-            
             this.waterArray.forEach(water => {
                 water.update()
                 water.draw()
-            } )
-            
+                water.checkCollision()
+            })
             //CHECK AMOUNT OF FIRE
             this.checkAmountOfFire()
             if (this.isGameOver===false) {
@@ -68,8 +67,8 @@ class Game {
         }
         window.requestAnimationFrame(loop)
     }
-    generateFire() {
-        if(Math.random()>0.995) {
+    generateFire() {      
+        if(Math.random()>0.96) {
             let ranX = Math.random()*((this.canvas.width - 80) - 400) + 400 //(max - min) + min
             let ranY = Math.random()*(380 - 20) + 20
             this.fireArray.push(new Fire(this.canvas,ranX,ranY))

@@ -9,6 +9,7 @@ class Fire {
         this.y = y
         this.width = 80
         this.height = 80
+        this.size = this.width * this.height
     }
     draw() {
         //DRAW FIRE

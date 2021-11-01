@@ -2,21 +2,34 @@ const water_image = new Image()
 water_image.src = "/img/water.png"
 
 class Water {
-    constructor(canvas, angle) {
+    constructor(canvas, angle, fireArray) {
         this.canvas = canvas
         this.ctx = this.canvas.getContext("2d")
-        this.x = 300
-        this.y = 350
+        this.x = 240
+        this.y = 370
         this.width = 40
         this.height = 40
-        this.speed = 10
+        this.Xspeed = 2
+        this.Yspeed = 0.2
         this.angle = angle
+        this.gravity = 0.05
+        this.gravitySpeed = 0
+        this.fireArray = fireArray
+        this.size = this.width * this.height
     }
-    draw() {        //DRAW THE WATER
+    draw() { //DRAW THE WATER
         this.ctx.drawImage(water_image,this.x,this.y,this.width,this.height)
     }
     update() {
-        this.x = this.x + this.speed
-        this.y = this.y - this.speed
+        this.gravitySpeed += this.gravity
+        this.x += this.Xspeed
+        this.y += this.Yspeed + this.gravitySpeed + (this.angle/10)
+    }
+    checkCollision() {
+        this.fireArray.forEach((fire, i) => {
+           if((this.x < fire.x + 10 && this.x > fire.x -10)&&(this.y < fire.y + 10 && this.y > fire.y -10)) {            
+                this.fireArray.splice(i,1)
+            }
+        });
     }
 }

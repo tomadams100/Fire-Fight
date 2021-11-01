@@ -10,7 +10,7 @@ class Player {
         //DRAW PLAYER
         this.ctx.translate(250,400)
         this.ctx.rotate(this.angle * Math.PI / 180)
-        this.ctx.fillStyle = 'indianred'
+        this.ctx.fillStyle = 'black'
         this.ctx.fillRect(this.hoseX, this.hoseY, 80, 20)
         this.ctx.resetTransform()
     }
