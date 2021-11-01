@@ -1,3 +1,6 @@
+const fire_image = new Image()
+fire_image.src = "/img/fire.png"
+
 class Fire {
     constructor(canvas,x,y) {
         this.canvas = canvas
@@ -9,7 +12,7 @@ class Fire {
     }
     draw() {
         //DRAW FIRE
-        this.ctx.fillStyle = 'red'
-        this.ctx.fillRect(this.x, this.y, this.width, this.height)
+        this.ctx.drawImage(fire_image,this.x,this.y,this.width,this.height)
     }
 }
+

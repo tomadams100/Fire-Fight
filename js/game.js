@@ -1,3 +1,10 @@
+const fireman_image = new Image()
+fireman_image.src = "/img/fireman.png"
+const house_image = new Image()
+house_image.src = "/img/house.png"
+const background_image = new Image()
+background_image.src = "/img/background.jpg"
+
 class Game {
     constructor() {
         this.canvas = null
@@ -24,9 +31,12 @@ class Game {
         const loop = () => {
             //CLEAR THE CANVAS
             this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
+            //DRAW BACKGROUND
+            this.ctx.drawImage(background_image,0,0,this.canvas.width,this.canvas.height)
             //DRAW THE FIREMAN
-            this.ctx.fillStyle = "green"
-            this.ctx.fillRect(150,350,100,120)
+            this.ctx.drawImage(fireman_image,80,270,250,220)
+            //DRAW THE HOUSE
+            this.ctx.drawImage(house_image,430,20,350,450)
             //DRAW THE PLAYER
             this.player.draw()
             //CREATE FIRE
@@ -44,13 +54,13 @@ class Game {
         window.requestAnimationFrame(loop)
     }
     generateFire() {
-        if(Math.random()>0.995) {
+        if(Math.random()>0.99) {
             let ranX = Math.random()*(this.canvas.width - 400) + 400 //(max - min) + min
             let ranY = Math.random()*400
             this.fireArray.push(new Fire(this.canvas,ranX,ranY))
         }
     }
     generateWater() {
-        return new Water
+        return new Water(this.canvas)
     }
 }
