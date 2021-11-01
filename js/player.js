@@ -8,7 +8,9 @@ class Player {
         //DRAW PLAYER
         this.ctx.translate(250,400)
         this.ctx.rotate(this.angle * Math.PI / 180)
+        //console.log("this.angle", this.angle)
         this.ctx.fillStyle = 'gray'
         this.ctx.fillRect(0, 0, 80, 20)
+        this.ctx.resetTransform()
     }
 }
