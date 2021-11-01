@@ -13,4 +13,17 @@ const buildGameScreen = () => {
     const game = new Game
     game.start()
 }
+
+const buildGameOver = () => {
+    buildDom(`
+        <section class="game-over">
+                <h1>Game Over</h1>
+                <button id = "game"> TRY AGAIN</button>
+                <div class= "pointer"> </div>
+            </section>
+    `)
+    const restartButton = document.querySelector("button");
+    restartButton.addEventListener("click", buildGameScreen);
+}
+
 window.addEventListener("load", buildGameScreen);

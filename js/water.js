@@ -5,7 +5,7 @@ class Water {
     constructor(canvas) {
         this.canvas = canvas
         this.ctx = this.canvas.getContext("2d")
-        this.x = 350
+        this.x = 300
         this.y = 350
         this.width = 40
         this.height = 40
