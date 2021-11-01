@@ -11,6 +11,7 @@ class Game {
         this.ctx = null
         this.player = null
         this.fireArray = []
+        this.waterArray = []
         this.isGameOver = false
     }
     start() {
@@ -47,8 +48,14 @@ class Game {
                 this.fireArray[i].draw() 
             }
             //CREATE WATER
-            let water = this.generateWater()
-            water.draw()
+            if(Math.random()>0.95) {
+                this.waterArray.push(new Water(this.canvas,this.player.angle))
+            }
+            
+            this.waterArray.forEach(water => {
+                water.update()
+                water.draw()
+            } )
             
             //CHECK AMOUNT OF FIRE
             this.checkAmountOfFire()
@@ -67,9 +74,6 @@ class Game {
             let ranY = Math.random()*(380 - 20) + 20
             this.fireArray.push(new Fire(this.canvas,ranX,ranY))
         }
-    }
-    generateWater() {
-        return new Water(this.canvas)
     }
     checkAmountOfFire() {
         if(this.fireArray.length > 30) this.isGameOver = true
