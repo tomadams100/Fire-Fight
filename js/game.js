@@ -12,6 +12,7 @@ class Game {
         this.player = null
         this.fireArray = []
         this.waterArray = []
+        this.temp = 0
         this.isGameOver = false
     }
     start() {
@@ -41,6 +42,7 @@ class Game {
             this.ctx.drawImage(house_image,430,20,350,450)
             //DRAW THE PLAYER
             this.player.draw()
+            
             //CREATE FIRE
             this.generateFire()
             //DRAW FIRE
@@ -63,6 +65,7 @@ class Game {
             } else {
                 buildGameOver()
             }
+            
             
         }
         window.requestAnimationFrame(loop)
