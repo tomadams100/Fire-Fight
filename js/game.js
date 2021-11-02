@@ -1,5 +1,13 @@
 const fireman_image = new Image()
 fireman_image.src = "/img/fireman.png"
+const water_bottle_full_image = new Image()
+water_bottle_full_image.src = "/img/water_bottles/water-bottle-full.png"
+const water_bottle_third_empty_image = new Image()
+water_bottle_third_empty_image.src = "/img/water_bottles/water-bottle-third-empty.png"
+const water_bottle_twothirds_empty_image = new Image()
+water_bottle_twothirds_empty_image.src = "/img/water_bottles/water-bottle-twothirds-empty.png"
+const water_bottle_empty_image = new Image()
+water_bottle_empty_image.src = "/img/water_bottles/water-bottle-empty.png"
 const house_image = new Image()
 house_image.src = "/img/house.png"
 const background_image = new Image()
@@ -15,6 +23,7 @@ class Game {
         this.extraWaterArray = []
         this.temp = 0
         this.waterRemaining = 300
+        this.waterFull = 300
         this.isGameOver = false
     }
     start() {
@@ -77,9 +86,15 @@ class Game {
                 }
             })
             //DRAW WATER REMAINING
-            this.ctx.font = "bold 45px arial"
-            this.ctx.fillStyle = "black"
-            this.ctx.fillText(`${this.waterRemaining} liters`, 10, 450)
+            if (this.waterRemaining/this.waterFull > 0.66) {
+                this.ctx.drawImage(water_bottle_full_image,40,370,100,120)
+            } else if (this.waterRemaining/this.waterFull > 0.33) {
+                this.ctx.drawImage(water_bottle_third_empty_image,40,370,100,120)
+            } else if (this.waterRemaining/this.waterFull > 0.1) {
+                this.ctx.drawImage(water_bottle_twothirds_empty_image,40,370,100,120)
+            } else {
+                this.ctx.drawImage(water_bottle_empty_image,40,370,100,120)
+            }
             //CHECK AMOUNT OF FIRE
             this.checkAmountOfFire()
             //CHECK AMOUNT OF WATER

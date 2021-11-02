@@ -37,9 +37,8 @@ class Water {
         this.extraWaterArray.forEach((extraWater, i) => {
             if((this.x < extraWater.x + 10 && this.x > extraWater.x -10)&&(this.y < extraWater.y + 10 && this.y > extraWater.y -10)) {
                 this.extraWaterArray.splice(i,1)
-                
-             }
-         });
+            }
+        });
     }
     checkWalls() { // Checks to see if water is outside the canvas
         if (this.x < this.canvas.width && this.y < this.canvas.height) { 
