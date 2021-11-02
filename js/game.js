@@ -46,17 +46,22 @@ class Game {
             //CREATE FIRE
             this.generateFire()
             //DRAW FIRE
-            for (let i = 0; i<this.fireArray.length; i++) {
-                this.fireArray[i].draw() 
-            }
+            this.fireArray.forEach(fire => {
+                fire.draw()
+                fire.checkCollision()
+            })
             //CREATE WATER
             if(Math.random()>0.9) {
-                this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray))
+                this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray, this.waterArray))
             }
-            this.waterArray.forEach(water => {
+            this.waterArray.forEach((water,i) => { 
                 water.update()
                 water.draw()
                 water.checkCollision()
+                if (water.checkWalls()) { // Checks to see if water is outside the canvas
+                    this.waterArray.splice(i,1)
+                }
+                console.log("this.waterArray.length: ", this.waterArray.length)
             })
             //CHECK AMOUNT OF FIRE
             this.checkAmountOfFire()
@@ -74,7 +79,7 @@ class Game {
         if(Math.random()>0.96) {
             let ranX = Math.random()*((this.canvas.width - 80) - 400) + 400 //(max - min) + min
             let ranY = Math.random()*(380 - 20) + 20
-            this.fireArray.push(new Fire(this.canvas,ranX,ranY))
+            this.fireArray.push(new Fire(this.canvas,ranX,ranY,this.waterArray))
         }
     }
     checkAmountOfFire() {

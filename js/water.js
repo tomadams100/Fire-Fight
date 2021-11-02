@@ -2,7 +2,7 @@ const water_image = new Image()
 water_image.src = "/img/water.png"
 
 class Water {
-    constructor(canvas, angle, fireArray) {
+    constructor(canvas, angle, fireArray, waterArray) {
         this.canvas = canvas
         this.ctx = this.canvas.getContext("2d")
         this.x = 240
@@ -15,6 +15,7 @@ class Water {
         this.gravity = 0.05
         this.gravitySpeed = 0
         this.fireArray = fireArray
+        this.waterArray = waterArray
         this.size = this.width * this.height
     }
     draw() { //DRAW THE WATER
@@ -31,5 +32,12 @@ class Water {
                 this.fireArray.splice(i,1)
             }
         });
+    }
+    checkWalls() {
+        if (this.x < this.canvas.width && this.y < this.canvas.height) { // Checks to see if water is outside the canvas
+            return false
+        } else {
+            return true
+        }
     }
 }
