@@ -2,7 +2,7 @@ const water_image = new Image()
 water_image.src = "/img/water.png"
 
 class Water {
-    constructor(canvas, angle, fireArray, extraWaterArray) {
+    constructor(canvas, angle, fireArray, extraWaterArray,waterRemaining) {
         this.canvas = canvas
         this.ctx = this.canvas.getContext("2d")
         this.x = 240
@@ -15,6 +15,7 @@ class Water {
         this.gravity = 0.05
         this.gravitySpeed = 0
         this.fireArray = fireArray
+        this.waterRemaining = waterRemaining
         this.extraWaterArray = extraWaterArray
         this.size = this.width * this.height
     }
@@ -26,20 +27,8 @@ class Water {
         this.x += this.Xspeed
         this.y += this.Yspeed + this.gravitySpeed + (this.angle/10)
     }
-    checkCollision() {
-        this.fireArray.forEach((fire, i) => {
-           if((this.x < fire.x + 10 && this.x > fire.x -10)&&(this.y < fire.y + 10 && this.y > fire.y -10)) {
-                this.fireArray.splice(i,1)
-            }
-        });
-    }
-    checkCollisionWithExtraWater() {
-        this.extraWaterArray.forEach((extraWater, i) => {
-            if((this.x < extraWater.x + 10 && this.x > extraWater.x -10)&&(this.y < extraWater.y + 10 && this.y > extraWater.y -10)) {
-                this.extraWaterArray.splice(i,1)
-            }
-        });
-    }
+    
+    
     checkWalls() { // Checks to see if water is outside the canvas
         if (this.x < this.canvas.width && this.y < this.canvas.height) { 
             return false

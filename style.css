@@ -1,4 +1,26 @@
 /* Style Sheet for Fire Fight */
+body
 canvas {
     border: 1px solid black;
+}
+.outer {
+    height: 100vh;
+    width: 100vh;
+    background-image: url("/img/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+#game {
+    display: table-cell;
+    vertical-align: middle;
 }

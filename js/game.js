@@ -22,8 +22,8 @@ class Game {
         this.waterArray = []
         this.extraWaterArray = []
         this.temp = 0
-        this.waterRemaining = 300
-        this.waterFull = 300
+        this.waterRemaining = 500
+        this.waterFull = 500
         this.isGameOver = false
     }
     start() {
@@ -36,6 +36,12 @@ class Game {
         this.handleKeyDown = (event) => {
             if(event.code === "ArrowUp") return this.player.angle -= 1
             if (event.code === "ArrowDown") return this.player.angle += 1
+            if (event.code === "Space") {
+                this.waterArray.forEach(water => {
+                    water.Xspeed = water.Xspeed * 1.015
+                })
+            }
+
         }
         window.addEventListener("keydown", this.handleKeyDown);
 
@@ -72,19 +78,20 @@ class Game {
             this.ctx.fillStyle = "red"
             this.ctx.fillText(`${this.temp}\xB0C`, 20, 40)
             //CREATE WATER
-            if(Math.random()>0.9) {
-                this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray, this.extraWaterArray))
+            if(Math.random()>0.87) {
+                this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray, this.extraWaterArray,this.waterRemaining))
                 this.waterRemaining -= 1 //every time you make a water, the amount of water left (ie in our water tank) decreases
             }
             this.waterArray.forEach((water,i) => { 
                 water.update()
                 water.draw()
-                water.checkCollision()
-                water.checkCollisionWithExtraWater()
+                this.checkCollision(water,i)
+                this.checkCollisionWithExtraWater(water,i)
                 if (water.checkWalls()) { // Checks to see if water is outside the canvas
                     this.waterArray.splice(i,1)
                 }
             })
+            
             //DRAW WATER REMAINING
             if (this.waterRemaining/this.waterFull > 0.66) {
                 this.ctx.drawImage(water_bottle_full_image,40,370,100,120)
@@ -108,22 +115,41 @@ class Game {
         window.requestAnimationFrame(loop)
     }
     generateFire() {      
-        if(Math.random()>0.96) {
+        if(Math.random()>0.95) {
             let ranX = Math.random()*((this.canvas.width - 80) - 400) + 400 //(max - min) + min
             let ranY = Math.random()*(380 - 20) + 20
             this.fireArray.push(new Fire(this.canvas,ranX,ranY,this.waterArray))
         }
     }
     generateExtraWater() {      
-        if(Math.random()>0.995) {
+        if(Math.random()>0.997) {
             let ranX = Math.random()*((this.canvas.width - 80) - 400) + 400 //(max - min) + min
             let ranY = Math.random()*(450 - 445) + 445
             this.extraWaterArray.push(new ExtraWater(this.canvas,ranX,ranY,this.waterArray))
         }
     }
+    checkCollision(water,j) {
+        this.fireArray.forEach((fire, i) => {
+           if((water.x < fire.x + 30 && water.x > fire.x -30)&&(water.y < fire.y + 30 && water.y > fire.y -30)) {
+                this.fireArray.splice(i,1)
+                this.waterArray.splice(j,1)
+                this.waterArray.splice(j-1,1)
+                this.waterArray.splice(j+1,1)
+            }
+        });
+    }
 
+    checkCollisionWithExtraWater(water,j) {
+        this.extraWaterArray.forEach((extraWater, i) => {
+            if((water.x < extraWater.x + 10 && water.x > extraWater.x -10)&&(water.y < extraWater.y + 10 && water.y > extraWater.y -10)) {
+                this.extraWaterArray.splice(i,1)
+                this.waterRemaining += 25
+                this.waterArray.splice(j,1)
+            }
+        });
+    }
     checkAmountOfFire() {
-        if(this.fireArray.length > 30) this.isGameOver = true
+        if(this.fireArray.length > 50) this.isGameOver = true
     }
     checkAmountOfWater() {
         if(this.waterRemaining <= 0) this.isGameOver = true

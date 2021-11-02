@@ -4,6 +4,16 @@ const buildDom = (html) => {
     main.innerHTML = html
 }
 
+const buildStartScreen = () => {
+    buildDom(`
+        <h1>Splash Screen</h1>
+        <br />
+        <button id="start-button">StartGame</button>
+    `)
+    const startButton = document.getElementById("start-button");
+    startButton.addEventListener("click", buildGameScreen);
+}
+
 const buildGameScreen = () => {
     buildDom(`
         <div id="game-board">
@@ -16,14 +26,19 @@ const buildGameScreen = () => {
 
 const buildGameOver = () => {
     buildDom(`
-        <section class="game-over">
-                <h1>Game Over</h1>
-                <button id = "game">TRY AGAIN</button>
-                <div class= "pointer"> </div>
-            </section>
+        <div class="outer">
+            <div class="middle">
+                <div class="inner">
+                    <div class="end_game_text">
+                        <img src="/img/end_game_text.png" alt="Game Over">
+                        <button id="game">TRY AGAIN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     `)
     const restartButton = document.querySelector("button");
     restartButton.addEventListener("click", buildGameScreen);
 }
 
-window.addEventListener("load", buildGameScreen);
+window.addEventListener("load", buildStartScreen);
