@@ -12,7 +12,9 @@ class Game {
         this.player = null
         this.fireArray = []
         this.waterArray = []
+        this.extraWaterArray = []
         this.temp = 0
+        this.waterRemaining = 300
         this.isGameOver = false
     }
     start() {
@@ -42,36 +44,51 @@ class Game {
             this.ctx.drawImage(house_image,430,20,350,450)
             //DRAW THE PLAYER
             this.player.draw()
-            
             //CREATE FIRE
             this.generateFire()
             //DRAW FIRE
             this.fireArray.forEach(fire => {
                 fire.draw()
-                fire.checkCollision()
             })
+            //CREATE EXTRA WATER
+            this.generateExtraWater()
+            //DRAW EXTRA WATER
+            this.extraWaterArray.forEach(extraWater => {
+                extraWater.draw()
+            })
+            //CALCULATE TEMP
+            this.temp = this.fireArray.length * 5
+            //DRAW TEMP
+            this.ctx.font = "bold 45px arial"
+            this.ctx.fillStyle = "red"
+            this.ctx.fillText(`${this.temp}\xB0C`, 20, 40)
             //CREATE WATER
             if(Math.random()>0.9) {
-                this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray, this.waterArray))
+                this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray, this.extraWaterArray))
+                this.waterRemaining -= 1 //every time you make a water, the amount of water left (ie in our water tank) decreases
             }
             this.waterArray.forEach((water,i) => { 
                 water.update()
                 water.draw()
                 water.checkCollision()
+                water.checkCollisionWithExtraWater()
                 if (water.checkWalls()) { // Checks to see if water is outside the canvas
                     this.waterArray.splice(i,1)
                 }
-                console.log("this.waterArray.length: ", this.waterArray.length)
             })
+            //DRAW WATER REMAINING
+            this.ctx.font = "bold 45px arial"
+            this.ctx.fillStyle = "black"
+            this.ctx.fillText(`${this.waterRemaining} liters`, 10, 450)
             //CHECK AMOUNT OF FIRE
             this.checkAmountOfFire()
+            //CHECK AMOUNT OF WATER
+            this.checkAmountOfWater()
             if (this.isGameOver===false) {
                 window.requestAnimationFrame(loop)
             } else {
                 buildGameOver()
             }
-            
-            
         }
         window.requestAnimationFrame(loop)
     }
@@ -82,7 +99,18 @@ class Game {
             this.fireArray.push(new Fire(this.canvas,ranX,ranY,this.waterArray))
         }
     }
+    generateExtraWater() {      
+        if(Math.random()>0.995) {
+            let ranX = Math.random()*((this.canvas.width - 80) - 400) + 400 //(max - min) + min
+            let ranY = Math.random()*(450 - 445) + 445
+            this.extraWaterArray.push(new ExtraWater(this.canvas,ranX,ranY,this.waterArray))
+        }
+    }
+
     checkAmountOfFire() {
         if(this.fireArray.length > 30) this.isGameOver = true
+    }
+    checkAmountOfWater() {
+        if(this.waterRemaining <= 0) this.isGameOver = true
     }
 }
