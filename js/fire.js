@@ -11,6 +11,7 @@ class Fire {
         this.height = 80
         this.size = this.width * this.height
         this.waterArray = waterArray
+        this.strength = 200
     }
     draw() {
         //DRAW FIRE

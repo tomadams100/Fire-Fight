@@ -24,8 +24,8 @@ class Game {
         this.waterArray = []
         this.extraWaterArray = []
         this.temp = 0
-        this.waterRemaining = 1000
-        this.waterFull = 1000
+        this.waterRemaining = 1500
+        this.waterFull = 1500
         this.isGameOver = false
     }
     start() {
@@ -62,8 +62,8 @@ class Game {
             //DRAW BACKGROUND
             this.ctx.drawImage(background_image,0,0,this.canvas.width,this.canvas.height)
             //DRAW THE FIREMAN
-            this.ctx.drawImage(topFireman_image,(17 * this.canvas.width/100),(66 * this.canvas.height/100),120,100)
-            this.ctx.drawImage(fireman_image,(17 * this.canvas.width/100),(80 * this.canvas.height/100),120,100)
+            this.ctx.drawImage(topFireman_image,(17 * this.canvas.width/100),(64 * this.canvas.height/100),100,100)
+            this.ctx.drawImage(fireman_image,(17 * this.canvas.width/100),(80 * this.canvas.height/100),75,100)
             //DRAW THE HOUSE
             this.ctx.drawImage(house_image,(55 * this.canvas.width/100),(21 * this.canvas.height/100),350,450)
             //DRAW THE PLAYER
@@ -140,10 +140,14 @@ class Game {
     checkCollision(water,j) {
         this.fireArray.forEach((fire, i) => {
            if((water.x < fire.x + 30 && water.x > fire.x -30)&&(water.y < fire.y + 30 && water.y > fire.y -30)) {
-                this.fireArray.splice(i,1)
-                this.waterArray.splice(j,1)
-                this.waterArray.splice(j-1,1)
-                this.waterArray.splice(j+1,1)
+                if (fire.strength > 0) {
+                    fire.strength--
+                } else {
+                    this.fireArray.splice(i,1)
+                    this.waterArray.splice(j,1)
+                    this.waterArray.splice(j-1,1)
+                    this.waterArray.splice(j+1,1)
+                }
             }
         });
     }
@@ -152,7 +156,7 @@ class Game {
         this.extraWaterArray.forEach((extraWater, i) => {
             if((water.x < extraWater.x + 10 && water.x > extraWater.x -10)&&(water.y < extraWater.y + 10 && water.y > extraWater.y -10)) {
                 this.extraWaterArray.splice(i,1)
-                this.waterRemaining += 25
+                this.waterRemaining += this.waterFull/3
                 this.waterArray.splice(j,1)
             }
         });

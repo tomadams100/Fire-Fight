@@ -9,10 +9,10 @@ class Water {
         this.y = (72*this.canvas.height/100)
         this.width = 40
         this.height = 40
-        this.Xspeed = 2
+        this.Xspeed = 4
         this.Yspeed = 0.2
         this.angle = angle
-        this.gravity = 0.05
+        this.gravity = 0.08
         this.gravitySpeed = 0
         this.fireArray = fireArray
         this.waterRemaining = waterRemaining
