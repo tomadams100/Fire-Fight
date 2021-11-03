@@ -6,7 +6,7 @@ class Water {
         this.canvas = canvas
         this.ctx = this.canvas.getContext("2d")
         this.x = (22.5*this.canvas.width/100)
-        this.y = (75*this.canvas.height/100)
+        this.y = (72*this.canvas.height/100)
         this.width = 40
         this.height = 40
         this.Xspeed = 2

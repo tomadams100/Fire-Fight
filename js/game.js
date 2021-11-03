@@ -1,5 +1,7 @@
 const fireman_image = new Image()
-fireman_image.src = "/img/fireman.png"
+fireman_image.src = "/img/newFireman.png"
+const topFireman_image = new Image()
+topFireman_image.src = "/img/topFireman.png"
 const water_bottle_full_image = new Image()
 water_bottle_full_image.src = "/img/water_bottles/water-bottle-full.png"
 const water_bottle_third_empty_image = new Image()
@@ -60,7 +62,8 @@ class Game {
             //DRAW BACKGROUND
             this.ctx.drawImage(background_image,0,0,this.canvas.width,this.canvas.height)
             //DRAW THE FIREMAN
-            this.ctx.drawImage(fireman_image,(10 * this.canvas.width/100),(60 * this.canvas.height/100),250,220)
+            this.ctx.drawImage(topFireman_image,(17 * this.canvas.width/100),(66 * this.canvas.height/100),120,100)
+            this.ctx.drawImage(fireman_image,(17 * this.canvas.width/100),(80 * this.canvas.height/100),120,100)
             //DRAW THE HOUSE
             this.ctx.drawImage(house_image,(55 * this.canvas.width/100),(21 * this.canvas.height/100),350,450)
             //DRAW THE PLAYER
