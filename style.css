@@ -1,26 +1,100 @@
 /* Style Sheet for Fire Fight */
-body
+html {
+    background: url(/img/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 canvas {
     border: 1px solid black;
 }
-.outer {
-    height: 100vh;
-    width: 100vh;
-    background-image: url("/img/background.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.middle {
-    display: table-cell;
-    vertical-align: middle;
-}
-.inner {
+@keyframes welcome_text_animation {
+    0% {transform: rotate(-25deg);}
+    50% {transform: rotate(25deg);}
+    100% {transform: rotate(-25deg);}
+  }
+.welcome_text {
+    display: block;
+    width: 30%;
+    margin-top: 0;
+    padding-top: 0;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    z-index: 1;
+    animation-name: welcome_text_animation;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
 }
-#game {
-    display: table-cell;
-    vertical-align: middle;
+@keyframes cloud_animation {
+    0% {left:5%}
+    50% {left:75%}
+    100% {left:5%}
+  }
+.cloud {
+    position: absolute;
+    z-index: -1;
+    width: 100px;
+    left: 5%;
+    top:5%;
+    animation-name: cloud_animation;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+}
+.cloud_2 {
+    position: absolute;
+    z-index: -1;
+    width: 100px;
+    left: 5%;
+    padding-left: 15%;
+    top: 10%;
+    animation-name: cloud_animation;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+}
+.cloud_3 {
+    position: absolute;
+    z-index: 2;
+    width: 100px;
+    left: 5%;
+    top: 15%;
+    padding-top: 5%;
+    animation-name: cloud_animation;
+    animation-duration: 120s;
+    animation-iteration-count: infinite;
+}
+.fire_extinguisher {
+    position: absolute;
+    width: 12%;
+    margin-left: 42%;
+    padding-top: 3%;
+    transition: transform .2s;
+}
+.fire_extinguisher:hover {
+    transform: scale(1.15);
+}
+.arrow {
+    display: block;
+    position: absolute;
+    margin-left: 52%;
+    margin-top: 5%;
+    width: 12%;
+    padding:0;
+    transform: rotate(-90deg);
+}
+.start {
+    display: block;
+    position: absolute;
+    margin-left: 64%;
+    margin-top: 11%;
+    width: 12%;
+    padding:0;
+}
+.instructions_container {
+    position: absolute;
+    top: 5%;
+    left: 4%
+}
+.instructions_container img {
+    width: 40%;
 }
