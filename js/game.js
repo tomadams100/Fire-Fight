@@ -22,8 +22,8 @@ class Game {
         this.waterArray = []
         this.extraWaterArray = []
         this.temp = 0
-        this.waterRemaining = 500
-        this.waterFull = 500
+        this.waterRemaining = 300
+        this.waterFull = 300
         this.isGameOver = false
     }
     start() {

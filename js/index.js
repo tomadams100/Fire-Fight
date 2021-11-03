@@ -33,18 +33,15 @@ const buildGameScreen = () => {
 
 const buildGameOver = () => {
     buildDom(`
-        <div class="outer">
-            <div class="middle">
-                <div class="inner">
-                    <div class="end_game_text">
-                        <img src="/img/end_game_text.png" alt="Game Over">
-                        <button id="game">TRY AGAIN</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <img src="/img/end_game_text.png" alt="" class="end_game_text">
+        <img src="/img/cloud.png" alt="" class="cloud">
+        <img src="/img/cloud.png" alt="" class="cloud_2">
+        <img src="/img/cloud.png" alt="" class="cloud_3">
+        <img src="/img/fire_extinguisher.png" alt="" id="try_again_button" class="fire_extinguisher">
+        <img src="/img/arrow.png" alt="" class="arrow">
+        <img src="/img/try_again.png" alt="" class="try_again">
     `)
-    const restartButton = document.querySelector("button");
+    const restartButton = document.getElementById("try_again_button");
     restartButton.addEventListener("click", buildGameScreen);
 }
 
