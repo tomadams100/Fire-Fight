@@ -9,7 +9,7 @@ class Water {
         this.y = (72*this.canvas.height/100)
         this.width = 40
         this.height = 40
-        this.Xspeed = 4
+        this.Xspeed = 3
         this.Yspeed = 0.2
         this.angle = angle
         this.gravity = 0.08

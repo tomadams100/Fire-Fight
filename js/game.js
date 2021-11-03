@@ -162,7 +162,7 @@ class Game {
         });
     }
     checkAmountOfFire() {
-        if(this.fireArray.length > 10000) this.isGameOver = true
+        if(this.fireArray.length > 100) this.isGameOver = true
     }
     checkAmountOfWater() {
         if(this.waterRemaining <= 0) this.isGameOver = true
