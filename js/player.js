@@ -6,14 +6,12 @@ class Player {
         this.canvas = canvas
         this.ctx = this.canvas.getContext("2d")
         this.angle = -40
-        this.hoseX = 0
-        this.hoseY = 0
     }
     draw() {
         //DRAW PLAYER
-        this.ctx.translate(220,400)
+        this.ctx.translate((20*this.canvas.width/100),(77*this.canvas.height/100))
         this.ctx.rotate(this.angle * Math.PI / 180)
-        this.ctx.drawImage(fire_extinguisher_image,this.hoseX,this.hoseY,100,100)
+        this.ctx.drawImage(fire_extinguisher_image,0,0,100,100)
         this.ctx.resetTransform()
     }
 }

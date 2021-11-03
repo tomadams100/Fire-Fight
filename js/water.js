@@ -5,8 +5,8 @@ class Water {
     constructor(canvas, angle, fireArray, extraWaterArray,waterRemaining) {
         this.canvas = canvas
         this.ctx = this.canvas.getContext("2d")
-        this.x = 240
-        this.y = 370
+        this.x = (22.5*this.canvas.width/100)
+        this.y = (75*this.canvas.height/100)
         this.width = 40
         this.height = 40
         this.Xspeed = 2

@@ -24,7 +24,7 @@ const buildStartScreen = () => {
 const buildGameScreen = () => {
     buildDom(`
         <div id="game-board">
-            <canvas id="canvas" width="800" height="500"></canvas>
+            <canvas id="canvas"></canvas>
         </div>
     `)
     const game = new Game

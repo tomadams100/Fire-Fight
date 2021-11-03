@@ -22,13 +22,19 @@ class Game {
         this.waterArray = []
         this.extraWaterArray = []
         this.temp = 0
-        this.waterRemaining = 300
-        this.waterFull = 300
+        this.waterRemaining = 1000
+        this.waterFull = 1000
         this.isGameOver = false
     }
     start() {
         this.canvas = document.querySelector("canvas")
         this.ctx = canvas.getContext("2d")
+
+        const gameBoard = document.querySelector("#game-board")
+
+        this.canvas.setAttribute("width", gameBoard.clientWidth);
+        this.canvas.setAttribute("height", gameBoard.clientHeight);
+
         //CREATE NEW PLAYER
         this.player = new Player(this.canvas)
 
@@ -54,9 +60,9 @@ class Game {
             //DRAW BACKGROUND
             this.ctx.drawImage(background_image,0,0,this.canvas.width,this.canvas.height)
             //DRAW THE FIREMAN
-            this.ctx.drawImage(fireman_image,80,270,250,220)
+            this.ctx.drawImage(fireman_image,(10 * this.canvas.width/100),(60 * this.canvas.height/100),250,220)
             //DRAW THE HOUSE
-            this.ctx.drawImage(house_image,430,20,350,450)
+            this.ctx.drawImage(house_image,(55 * this.canvas.width/100),(21 * this.canvas.height/100),350,450)
             //DRAW THE PLAYER
             this.player.draw()
             //CREATE FIRE
@@ -74,11 +80,11 @@ class Game {
             //CALCULATE TEMP
             this.temp = this.fireArray.length * 5
             //DRAW TEMP
-            this.ctx.font = "bold 45px arial"
+            this.ctx.font = "bold 55px arial"
             this.ctx.fillStyle = "red"
-            this.ctx.fillText(`${this.temp}\xB0C`, 20, 40)
+            this.ctx.fillText(`${this.temp}\xB0C`, (5*this.canvas.width/100), (10*this.canvas.height/100))
             //CREATE WATER
-            if(Math.random()>0.87) {
+            if(Math.random()>0.65) {
                 this.waterArray.push(new Water(this.canvas,this.player.angle,this.fireArray, this.extraWaterArray,this.waterRemaining))
                 this.waterRemaining -= 1 //every time you make a water, the amount of water left (ie in our water tank) decreases
             }
@@ -94,13 +100,13 @@ class Game {
             
             //DRAW WATER REMAINING
             if (this.waterRemaining/this.waterFull > 0.66) {
-                this.ctx.drawImage(water_bottle_full_image,40,370,100,120)
+                this.ctx.drawImage(water_bottle_full_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
             } else if (this.waterRemaining/this.waterFull > 0.33) {
-                this.ctx.drawImage(water_bottle_third_empty_image,40,370,100,120)
+                this.ctx.drawImage(water_bottle_third_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
             } else if (this.waterRemaining/this.waterFull > 0.1) {
-                this.ctx.drawImage(water_bottle_twothirds_empty_image,40,370,100,120)
+                this.ctx.drawImage(water_bottle_twothirds_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
             } else {
-                this.ctx.drawImage(water_bottle_empty_image,40,370,100,120)
+                this.ctx.drawImage(water_bottle_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
             }
             //CHECK AMOUNT OF FIRE
             this.checkAmountOfFire()
@@ -115,16 +121,16 @@ class Game {
         window.requestAnimationFrame(loop)
     }
     generateFire() {      
-        if(Math.random()>0.95) {
-            let ranX = Math.random()*((this.canvas.width - 80) - 400) + 400 //(max - min) + min
-            let ranY = Math.random()*(380 - 20) + 20
+        if(Math.random()>0.97) {
+            let ranX = Math.random()*((this.canvas.width - (23*this.canvas.width/100)) - (52*this.canvas.width/100)) + (53*this.canvas.width/100) //(max - min) + min
+            let ranY = Math.random()*((85*this.canvas.height/100) - (19*this.canvas.height/100)) + (19*this.canvas.height/100)
             this.fireArray.push(new Fire(this.canvas,ranX,ranY,this.waterArray))
         }
     }
     generateExtraWater() {      
-        if(Math.random()>0.997) {
-            let ranX = Math.random()*((this.canvas.width - 80) - 400) + 400 //(max - min) + min
-            let ranY = Math.random()*(450 - 445) + 445
+        if(Math.random()>0.998) {
+            let ranX = Math.random()*((this.canvas.width - (52*this.canvas.width/100)) - (30*this.canvas.width/100)) + (30*this.canvas.width/100) //(max - min) + min
+            let ranY = Math.random()*((90*this.canvas.height/100) - (90*this.canvas.height/100)) + (90*this.canvas.height/100)
             this.extraWaterArray.push(new ExtraWater(this.canvas,ranX,ranY,this.waterArray))
         }
     }
@@ -149,7 +155,7 @@ class Game {
         });
     }
     checkAmountOfFire() {
-        if(this.fireArray.length > 50) this.isGameOver = true
+        if(this.fireArray.length > 10000) this.isGameOver = true
     }
     checkAmountOfWater() {
         if(this.waterRemaining <= 0) this.isGameOver = true
