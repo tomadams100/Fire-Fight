@@ -1,3 +1,6 @@
+const fire_extinguisher_image = new Image()
+fire_extinguisher_image.src = "/img/fire_extinguisher.png"
+
 class Player {
     constructor(canvas) {
         this.canvas = canvas
@@ -8,10 +11,9 @@ class Player {
     }
     draw() {
         //DRAW PLAYER
-        this.ctx.translate(250,400)
+        this.ctx.translate(220,400)
         this.ctx.rotate(this.angle * Math.PI / 180)
-        this.ctx.fillStyle = 'black'
-        this.ctx.fillRect(this.hoseX, this.hoseY, 80, 20)
+        this.ctx.drawImage(fire_extinguisher_image,this.hoseX,this.hoseY,100,100)
         this.ctx.resetTransform()
     }
 }
