@@ -24,6 +24,9 @@ const buildStartScreen = () => {
 const buildGameScreen = () => {
     buildDom(`
         <div id="game-board">
+            <img src="img/level_one.png" alt="" id="level_one" class="level noShow">
+            <img src="img/level_two.png" alt="" id="level_two" class="level noShow">
+            <img src="img/level_three.png" alt="" id="level_three" class="level noShow">
             <canvas id="canvas"></canvas>
         </div>
     `)

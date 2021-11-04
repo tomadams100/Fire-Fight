@@ -1,6 +1,14 @@
 const fire_image = new Image()
 fire_image.src = "./img/fire.png"
 
+const fireGif = []
+
+for (let i = 1; i <= 10; i++) {
+    let fire_gif_frame = new Image()
+    fire_gif_frame.src = `./img/fire_gif/fire_${i}.gif`
+    fireGif.push(fire_gif_frame)
+}
+
 class Fire {
     constructor(canvas,x,y,waterArray) {
         this.canvas = canvas
@@ -14,7 +22,10 @@ class Fire {
     }
     draw() {
         //DRAW FIRE
-        this.ctx.drawImage(fire_image,this.x,this.y,this.width,this.height)
+        //this.ctx.drawImage(fire_image,this.x,this.y,this.width,this.height)
+        fireGif.forEach(frame => {
+            this.ctx.drawImage(frame,this.x,this.y,this.width,this.height)
+        })
     }
 }
 

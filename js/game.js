@@ -28,12 +28,16 @@ class Game {
         this.waterRemaining = 1500
         this.waterFull = 1500
         this.isGameOver = false
+        this.dif = 0.985
     }
     start() {
         this.canvas = document.querySelector("canvas")
         this.ctx = canvas.getContext("2d")
 
         const gameBoard = document.querySelector("#game-board")
+        const level_one_image = document.querySelector("#level_one")
+        const level_two_image = document.querySelector("#level_two")
+        const level_three_image = document.querySelector("#level_three")
 
         this.canvas.setAttribute("width", gameBoard.clientWidth);
         this.canvas.setAttribute("height", gameBoard.clientHeight);
@@ -54,18 +58,20 @@ class Game {
         }
         window.addEventListener("keydown", this.handleKeyDown);
 
+        // LEVELS (sets probability of fire creation and prints level message)
+        setTimeout(() => this.setupLevel(0.985,level_one_image), 1)
+        setTimeout(() => this.setupLevel(0.94,level_two_image),45000)
+        setTimeout(() => this.setupLevel(0.9,level_three_image),90000)
+
         this.startLoop()
     }
-    /* 
-    start()
-    levelSelector()
-     startTimer
-      if timer < 1 min then: dificulty = 1, show level 1 text
-      if timer > 1 & < 2 then: dificulty = 2, show level 2 text
-      if timer > 2 & < 3 then: dificulty = 3, show level 3 text
-      if timer > 3 then: buildGameOver()
-    startLoop()
-    */
+    
+    setupLevel(dif,image) {
+        this.dif = dif
+        image.classList.remove("noShow")
+        setTimeout(() => image.classList.add("noShow"),4000)
+    }
+
     startLoop() {
         const loop = () => {
             //CLEAR THE CANVAS
@@ -134,15 +140,15 @@ class Game {
         }
         window.requestAnimationFrame(loop)
     }
-    generateFire() {      
-        if(Math.random()>0.97) {
+    generateFire() {
+        if(Math.random()>this.dif) {
             let ranX = Math.random()*((this.canvas.width - (23*this.canvas.width/100)) - (52*this.canvas.width/100)) + (53*this.canvas.width/100) //(max - min) + min
             let ranY = Math.random()*((85*this.canvas.height/100) - (19*this.canvas.height/100)) + (19*this.canvas.height/100)
             this.fireArray.push(new Fire(this.canvas,ranX,ranY,this.waterArray))
         }
     }
     generateExtraWater() {      
-        if(Math.random()>0.999) {
+        if(Math.random()>0.997) {
             let ranX = Math.random()*((this.canvas.width - (52*this.canvas.width/100)) - (30*this.canvas.width/100)) + (30*this.canvas.width/100) //(max - min) + min
             let ranY = Math.random()*((90*this.canvas.height/100) - (90*this.canvas.height/100)) + (90*this.canvas.height/100)
             this.extraWaterArray.push(new ExtraWater(this.canvas,ranX,ranY,this.waterArray))
