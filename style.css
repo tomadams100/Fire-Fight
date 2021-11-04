@@ -73,6 +73,10 @@ canvas {
     animation-name: cloud_animation;
     animation-duration: 120s;
     animation-iteration-count: infinite;
+    transition: transform .2s;
+}
+.cloud_3:hover {
+    transform: scale(1.15);
 }
 .fire_extinguisher {
     position: absolute;
@@ -155,4 +159,14 @@ canvas {
 }
 .noShow {
     display: none;
+}
+/* BIG CLOUD */
+.big_cloud {
+    z-index: 2;
+    display: block;
+    position: absolute;
+    margin-left: 59%;
+}
+.visHide {
+    visibility: hidden;
 }

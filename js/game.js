@@ -29,8 +29,13 @@ class Game {
         this.waterFull = 1500
         this.isGameOver = false
         this.dif = 0.985
+        this.rainArray = []
     }
-    start() {
+    start(easterEgg) {
+        const big_cloud = document.querySelector("#big_cloud")
+        if (easterEgg == true) {
+            big_cloud.classList.remove("visHide")
+        }
         this.canvas = document.querySelector("canvas")
         this.ctx = canvas.getContext("2d")
 
@@ -63,7 +68,7 @@ class Game {
         setTimeout(() => this.setupLevel(0.94,level_two_image),45000)
         setTimeout(() => this.setupLevel(0.9,level_three_image),90000)
 
-        this.startLoop()
+        this.startLoop(easterEgg)
     }
     
     setupLevel(dif,image) {
@@ -72,7 +77,7 @@ class Game {
         setTimeout(() => image.classList.add("noShow"),4000)
     }
 
-    startLoop() {
+    startLoop(easterEgg) {
         const loop = () => {
             //CLEAR THE CANVAS
             this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
@@ -117,7 +122,22 @@ class Game {
                     this.waterArray.splice(i,1)
                 }
             })
-            
+            //DRAW RAIN DROPS from BIG CLOUD
+            if (easterEgg) {
+                if(Math.random()>0.65) {
+                    let ranX = Math.random()*((this.canvas.width - (23*this.canvas.width/100)) - (52*this.canvas.width/100)) + (53*this.canvas.width/100) //(max - min) + min
+                    let ranY = Math.random()*((85*this.canvas.height/100) - (19*this.canvas.height/100)) + (19*this.canvas.height/100)
+                    this.rainArray.push(new Rain(this.canvas,this.fireArray,ranX,ranY))
+                }
+                this.rainArray.forEach((rain,i) => { 
+                    rain.update()
+                    rain.draw()
+                    this.checkCollisionWithRain(rain,i)
+                    if (rain.checkWalls()) { // Checks to see if water is outside the canvas
+                        this.rainArray.splice(i,1)
+                    }
+                })
+            }
             //DRAW WATER REMAINING
             if (this.waterRemaining/this.waterFull > 0.66) {
                 this.ctx.drawImage(water_bottle_full_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
@@ -174,6 +194,20 @@ class Game {
                 this.extraWaterArray.splice(i,1)
                 this.waterRemaining += this.waterFull/10
                 this.waterArray.splice(j,1)
+            }
+        });
+    }
+    checkCollisionWithRain(rain,j) {
+        this.fireArray.forEach((fire, i) => {
+           if((rain.x < fire.x + 30 && rain.x > fire.x -30)&&(rain.y < fire.y + 30 && rain.y > fire.y -30)) {
+                if (fire.strength > 0) {
+                    fire.strength--
+                } else {
+                    this.fireArray.splice(i,1)
+                    this.rainArray.splice(j,1)
+                    this.rainArray.splice(j-1,1)
+                    this.rainArray.splice(j+1,1)
+                }
             }
         });
     }
