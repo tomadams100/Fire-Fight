@@ -1,5 +1,5 @@
 const fire_image = new Image()
-fire_image.src = "img/fire.png"
+fire_image.src = "./img/fire.png"
 
 class Fire {
     constructor(canvas,x,y,waterArray) {

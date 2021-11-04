@@ -1,5 +1,5 @@
 const extraWater_image = new Image()
-extraWater_image.src = "img/extraWater.png"
+extraWater_image.src = "./img/extraWater.png"
 
 class ExtraWater {
     constructor(canvas,x,y,waterArray) {

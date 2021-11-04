@@ -1,5 +1,5 @@
 const fire_extinguisher_image = new Image()
-fire_extinguisher_image.src = "img/fire_extinguisher.png"
+fire_extinguisher_image.src = "./img/fire_extinguisher.png"
 
 class Player {
     constructor(canvas) {
