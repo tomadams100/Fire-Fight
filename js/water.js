@@ -17,7 +17,6 @@ class Water {
         this.fireArray = fireArray
         this.waterRemaining = waterRemaining
         this.extraWaterArray = extraWaterArray
-        this.size = this.width * this.height
     }
     draw() { //DRAW THE WATER
         this.ctx.drawImage(water_image,this.x,this.y,this.width,this.height)

@@ -9,7 +9,6 @@ class ExtraWater {
         this.y = y
         this.width = 40
         this.height = 40
-        this.size = this.width * this.height
         this.waterArray = waterArray
     }
     draw() {

@@ -131,7 +131,7 @@ class Game {
         }
     }
     generateExtraWater() {      
-        if(Math.random()>0.998) {
+        if(Math.random()>0.999) {
             let ranX = Math.random()*((this.canvas.width - (52*this.canvas.width/100)) - (30*this.canvas.width/100)) + (30*this.canvas.width/100) //(max - min) + min
             let ranY = Math.random()*((90*this.canvas.height/100) - (90*this.canvas.height/100)) + (90*this.canvas.height/100)
             this.extraWaterArray.push(new ExtraWater(this.canvas,ranX,ranY,this.waterArray))
@@ -151,18 +151,17 @@ class Game {
             }
         });
     }
-
     checkCollisionWithExtraWater(water,j) {
         this.extraWaterArray.forEach((extraWater, i) => {
             if((water.x < extraWater.x + 10 && water.x > extraWater.x -10)&&(water.y < extraWater.y + 10 && water.y > extraWater.y -10)) {
                 this.extraWaterArray.splice(i,1)
-                this.waterRemaining += this.waterFull/3
+                this.waterRemaining += this.waterFull/10
                 this.waterArray.splice(j,1)
             }
         });
     }
     checkAmountOfFire() {
-        if(this.fireArray.length > 100) this.isGameOver = true
+        if(this.fireArray.length > 50) this.isGameOver = true
     }
     checkAmountOfWater() {
         if(this.waterRemaining <= 0) this.isGameOver = true
