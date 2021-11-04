@@ -2,11 +2,14 @@ const fire_image = new Image()
 fire_image.src = "./img/fire.png"
 
 const fireGif = []
+let counter = 0
 
-for (let i = 1; i <= 10; i++) {
-    let fire_gif_frame = new Image()
-    fire_gif_frame.src = `./img/fire_gif/fire_${i}.gif`
-    fireGif.push(fire_gif_frame)
+for (let i = 1; i <= 30; i++) {
+    for (let j = 0; j < 10; j++) {
+        let fire_gif_frame = new Image()
+        fire_gif_frame.src = `./img/fire_gif/fire_${i}.gif`
+        fireGif.push(fire_gif_frame)
+    }
 }
 
 class Fire {
@@ -21,11 +24,10 @@ class Fire {
         this.strength = 200
     }
     draw() {
-        //DRAW FIRE
-        //this.ctx.drawImage(fire_image,this.x,this.y,this.width,this.height)
-        fireGif.forEach(frame => {
-            this.ctx.drawImage(frame,this.x,this.y,this.width,this.height)
-        })
+        //DRAW FIRE        
+        this.ctx.drawImage(fireGif[counter],this.x,this.y,this.width,this.height)
+        counter++
+        if (counter == fireGif.length-1) counter = 0
     }
 }
 
