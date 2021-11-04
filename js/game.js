@@ -1,3 +1,4 @@
+// test comment
 const fireman_image = new Image()
 fireman_image.src = "./img/newFireman.png"
 const topFireman_image = new Image()
