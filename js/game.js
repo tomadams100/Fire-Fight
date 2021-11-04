@@ -1,19 +1,19 @@
 const fireman_image = new Image()
-fireman_image.src = "/img/newFireman.png"
+fireman_image.src = "img/newFireman.png"
 const topFireman_image = new Image()
-topFireman_image.src = "/img/topFireman.png"
+topFireman_image.src = "img/topFireman.png"
 const water_bottle_full_image = new Image()
-water_bottle_full_image.src = "/img/water_bottles/water-bottle-full.png"
+water_bottle_full_image.src = "img/water_bottles/water-bottle-full.png"
 const water_bottle_third_empty_image = new Image()
-water_bottle_third_empty_image.src = "/img/water_bottles/water-bottle-third-empty.png"
+water_bottle_third_empty_image.src = "img/water_bottles/water-bottle-third-empty.png"
 const water_bottle_twothirds_empty_image = new Image()
-water_bottle_twothirds_empty_image.src = "/img/water_bottles/water-bottle-twothirds-empty.png"
+water_bottle_twothirds_empty_image.src = "img/water_bottles/water-bottle-twothirds-empty.png"
 const water_bottle_empty_image = new Image()
-water_bottle_empty_image.src = "/img/water_bottles/water-bottle-empty.png"
+water_bottle_empty_image.src = "img/water_bottles/water-bottle-empty.png"
 const house_image = new Image()
-house_image.src = "/img/house.png"
+house_image.src = "img/house.png"
 const background_image = new Image()
-background_image.src = "/img/background.jpg"
+background_image.src = "img/background.jpg"
 
 class Game {
     constructor() {
@@ -55,6 +55,16 @@ class Game {
 
         this.startLoop()
     }
+    /* 
+    start()
+    levelSelector()
+     startTimer
+      if timer < 1 min then: dificulty = 1, show level 1 text
+      if timer > 1 & < 2 then: dificulty = 2, show level 2 text
+      if timer > 2 & < 3 then: dificulty = 3, show level 3 text
+      if timer > 3 then: buildGameOver()
+    startLoop()
+    */
     startLoop() {
         const loop = () => {
             //CLEAR THE CANVAS
