@@ -126,7 +126,7 @@ class Game {
             if (easterEgg) {
                 if(Math.random()>0.65) {
                     let ranX = Math.random()*((this.canvas.width - (23*this.canvas.width/100)) - (52*this.canvas.width/100)) + (53*this.canvas.width/100) //(max - min) + min
-                    let ranY = Math.random()*((85*this.canvas.height/100) - (19*this.canvas.height/100)) + (19*this.canvas.height/100)
+                    let ranY = Math.random()*((85*this.canvas.height/100) - (16*this.canvas.height/100)) + (19*this.canvas.height/100)
                     this.rainArray.push(new Rain(this.canvas,this.fireArray,ranX,ranY))
                 }
                 this.rainArray.forEach((rain,i) => { 
