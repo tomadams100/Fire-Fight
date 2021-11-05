@@ -87,7 +87,9 @@ class Game {
             this.ctx.drawImage(topFireman_image,(17 * this.canvas.width/100),(64 * this.canvas.height/100),100,100)
             this.ctx.drawImage(fireman_image,(17 * this.canvas.width/100),(80 * this.canvas.height/100),75,100)
             //DRAW THE HOUSE
-            this.ctx.drawImage(house_image,(55 * this.canvas.width/100),(21 * this.canvas.height/100),350,450)
+            this.ctx.drawImage(house_image,(55 * this.canvas.width/100),(21 * this.canvas.height/100),(27.3*this.canvas.width/100),(73.4 * this.canvas.height/100))
+            console.log("canvas.height: ", this.canvas.height)
+            console.log("canvas.width: ", this.canvas.width)
             //DRAW THE PLAYER
             this.player.draw()
             //CREATE FIRE
