@@ -25,8 +25,8 @@ class Game {
         this.waterArray = []
         this.extraWaterArray = []
         this.temp = 0
-        this.waterRemaining = 1500
-        this.waterFull = 1500
+        this.waterRemaining = 1200
+        this.waterFull = 1200
         this.isGameOver = false
         this.dif = 0.985
         this.rainArray = []
@@ -52,8 +52,8 @@ class Game {
 
         //KEY PRESS UP OR DOWN, TO CHANGE ANGLE OF PLAYER
         this.handleKeyDown = (event) => {
-            if(event.code === "ArrowUp") return this.player.angle -= 1
-            if (event.code === "ArrowDown") return this.player.angle += 1
+            if(event.code === "ArrowUp" && this.player.angle >= -75) return this.player.angle -= 1
+            if (event.code === "ArrowDown" && this.player.angle <= -10) return this.player.angle += 1 
             if (event.code === "Space") {
                 this.waterArray.forEach(water => {
                     water.Xspeed = water.Xspeed * 1.015
@@ -65,8 +65,8 @@ class Game {
 
         // LEVELS (sets probability of fire creation and prints level message)
         setTimeout(() => this.setupLevel(0.985,level_one_image), 1)
-        setTimeout(() => this.setupLevel(0.94,level_two_image),45000)
-        setTimeout(() => this.setupLevel(0.9,level_three_image),90000)
+        setTimeout(() => this.setupLevel(0.955,level_two_image),45000) // 45
+        setTimeout(() => this.setupLevel(0.92,level_three_image),90000) //90
 
         this.startLoop(easterEgg)
     }
@@ -169,7 +169,7 @@ class Game {
     }
     generateExtraWater() {      
         if(Math.random()>0.997) {
-            let ranX = Math.random()*((this.canvas.width - (52*this.canvas.width/100)) - (30*this.canvas.width/100)) + (30*this.canvas.width/100) //(max - min) + min
+            let ranX = Math.random()*((this.canvas.width - (52*this.canvas.width/100)) - (37*this.canvas.width/100)) + (37*this.canvas.width/100) //(max - min) + min
             let ranY = Math.random()*((90*this.canvas.height/100) - (90*this.canvas.height/100)) + (90*this.canvas.height/100)
             this.extraWaterArray.push(new ExtraWater(this.canvas,ranX,ranY,this.waterArray))
         }
