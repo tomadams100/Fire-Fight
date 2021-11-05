@@ -20,6 +20,11 @@ Each level you must not let the fire get too hot. Put out the fire as it appears
 Each level fire will be created more frequently, see how long you can survive!
 
 #### Details
+
+Live Demo: https://tomadams100.github.io/Fire-Fight/
+
+Github repo: https://github.com/tomadams100/Fire-Fight/
+
 Created as part of Ironhack Web Dev bootcamp.
 Tom Adams
 November 2021
