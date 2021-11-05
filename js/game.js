@@ -84,8 +84,8 @@ class Game {
             //DRAW BACKGROUND
             this.ctx.drawImage(background_image,0,0,this.canvas.width,this.canvas.height)
             //DRAW THE FIREMAN
-            this.ctx.drawImage(topFireman_image,(17 * this.canvas.width/100),(64 * this.canvas.height/100),100,100)
-            this.ctx.drawImage(fireman_image,(17 * this.canvas.width/100),(80 * this.canvas.height/100),75,100)
+            this.ctx.drawImage(topFireman_image,(17 * this.canvas.width/100),(64 * this.canvas.height/100),(7.8*this.canvas.width/100),(16.3 * this.canvas.height/100))
+            this.ctx.drawImage(fireman_image,(17 * this.canvas.width/100),(80 * this.canvas.height/100),(5.4*this.canvas.width/100),(16.3 * this.canvas.height/100))
             //DRAW THE HOUSE
             this.ctx.drawImage(house_image,(55 * this.canvas.width/100),(21 * this.canvas.height/100),(27.3*this.canvas.width/100),(73.4 * this.canvas.height/100))
             console.log("canvas.height: ", this.canvas.height)
