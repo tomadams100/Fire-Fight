@@ -142,13 +142,13 @@ class Game {
             }
             //DRAW WATER REMAINING
             if (this.waterRemaining/this.waterFull > 0.66) {
-                this.ctx.drawImage(water_bottle_full_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
+                this.ctx.drawImage(water_bottle_full_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),(16 * this.canvas.height/100),(19 * this.canvas.height/100))
             } else if (this.waterRemaining/this.waterFull > 0.33) {
-                this.ctx.drawImage(water_bottle_third_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
+                this.ctx.drawImage(water_bottle_third_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),(16 * this.canvas.height/100),(19 * this.canvas.height/100))
             } else if (this.waterRemaining/this.waterFull > 0.1) {
-                this.ctx.drawImage(water_bottle_twothirds_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
+                this.ctx.drawImage(water_bottle_twothirds_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),(16 * this.canvas.height/100),(19 * this.canvas.height/100))
             } else {
-                this.ctx.drawImage(water_bottle_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),100,120)
+                this.ctx.drawImage(water_bottle_empty_image,(6 * this.canvas.width/100),(77 * this.canvas.height/100),(16 * this.canvas.height/100),(19 * this.canvas.height/100))
             }
             //CHECK AMOUNT OF FIRE
             this.checkAmountOfFire()
